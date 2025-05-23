@@ -1,0 +1,230 @@
+.App {
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.App-header nav {
+  margin-top: 15px;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  color: #61dafb;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+
+h1, h2, h3 {
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="date"],
+form textarea,
+form select {
+  width: calc(100% - 22px); /* Account for padding and border */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Important to include padding and border in the element's total width and height */
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+form button[type="button"] {
+  background-color: #6c757d;
+  margin-top: 5px;
+}
+
+form button[type="button"]:hover {
+  background-color: #545b62;
+}
+
+/* Dashboard Specific Styles */
+.dashboard-container {
+  padding: 20px;
+}
+
+.kpi-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.kpi-card h3 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.kpi-card p {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0 0 0;
+}
+
+.kpi-section {
+  margin-bottom: 30px;
+}
+
+.kpi-section h3 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.kpi-list {
+  list-style: none;
+  padding: 0;
+}
+
+.kpi-item {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.kpi-item strong {
+  color: #555;
+}
+
+.kpi-item em {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.kpi-item .kpi-notes {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.kpi-chart-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-top: 20px;
+}
+
+/* OrderList Filters Styling */
+.order-filters {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.order-filters h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.order-filters > div { /* Direct child div holding filter controls */
+  display: flex;
+  gap: 15px; /* Spacing between filter groups */
+  align-items: center;
+  flex-wrap: wrap; /* Allow filters to wrap on smaller screens */
+}
+
+.order-filters > div > div { /* Individual filter group */
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Spacing between label and input */
+}
