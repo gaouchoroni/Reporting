@@ -8,6 +8,7 @@ const PartList = () => {
     const [error, setError] = useState(null);
     const [showForm, setShowForm] = useState(false);
     const [editingPart, setEditingPart] = useState(null);
+    const [isDeleting, setIsDeleting] = useState(null); // To track which part is being deleted
 
     const fetchParts = useCallback(async () => {
         setIsLoading(true);
@@ -38,15 +39,17 @@ const PartList = () => {
     };
 
     const handleDeletePart = async (partId) => {
-        setIsLoading(true); // Optional: show loading state for delete
+        setIsDeleting(partId); // Set which part is being deleted
+        setError(null);
         try {
             await api.deletePart(partId);
             await fetchParts(); // Re-fetch parts after deletion
         } catch (err) {
             setError(err.message || 'Failed to delete part.');
             console.error(err);
+            // Toast error is handled by api.js
         } finally {
-            setIsLoading(false);
+            setIsDeleting(null); // Reset deleting state
         }
     };
 
@@ -95,10 +98,10 @@ const PartList = () => {
                 />
             )}
 
-            {isLoading && <p>Updating...</p>} 
+            {isLoading && !isDeleting && <p>Loading/Updating Parts...</p>} 
 
             <h3>Parts List</h3>
-            {parts.length === 0 && !isLoading ? (
+            {parts.length === 0 && !isLoading && !isDeleting ? (
                 <p>No parts available. Add one!</p>
             ) : (
                 <table>
@@ -123,8 +126,14 @@ const PartList = () => {
                                 <td>{part.Supplier}</td>
                                 <td>${parseFloat(part.UnitPrice).toFixed(2)}</td>
                                 <td>
-                                    <button onClick={() => handleEditPartClick(part)} disabled={showForm}>Edit</button>
-                                    <button onClick={() => handleDeletePart(part.id)} disabled={showForm}>Delete</button>
+                                    <button onClick={() => handleEditPartClick(part)} disabled={showForm || isDeleting !== null}>Edit</button>
+                                    <button 
+                                        onClick={() => handleDeletePart(part.id)} 
+                                        disabled={showForm || isDeleting !== null}
+                                        className={isDeleting === part.id ? 'button-danger-loading' : 'button-danger'}
+                                    >
+                                        {isDeleting === part.id ? 'Deleting...' : 'Delete'}
+                                    </button>
                                 </td>
                             </tr>
                         ))}

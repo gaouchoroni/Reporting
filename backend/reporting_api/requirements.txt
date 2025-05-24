@@ -1,3 +1,6 @@
 Django>=3.2,<4.0
 djangorestframework>=3.12,<3.13
 psycopg2-binary>=2.9,<3.0
+django-filter>=2.4.0,<3.0
+dj-rest-auth>=2.1.15,<3.0
+coreapi>=2.3.3,<3.0 

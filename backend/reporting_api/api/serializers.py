@@ -6,10 +6,32 @@ class PartSerializer(serializers.ModelSerializer):
         model = Part
         fields = '__all__'
 
+class SimplePartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Part
+        fields = ['id', 'PartName']
+
 class OrderItemSerializer(serializers.ModelSerializer):
+    Part = SimplePartSerializer(read_only=True)
+    Part_id = serializers.PrimaryKeyRelatedField(
+        queryset=Part.objects.all(),
+        source='Part',
+        write_only=True,
+        label='Part ID'
+    )
+    # Assuming 'Order' is handled by the OrderSerializer when creating/updating order items,
+    # or it's a read-only field if OrderItems are only ever viewed in context of an Order.
+    # If OrderItems can be created/updated independently and linked to an Order,
+    # 'Order' might be a PrimaryKeyRelatedField here as well.
+    # For now, respecting the example which focuses on Part/Part_id.
+    # The 'Order' field in Meta.fields will use the default ModelSerializer behavior for ForeignKey.
+
     class Meta:
         model = OrderItem
-        fields = '__all__'
+        # Original fields might have been '__all__'. Explicitly listing them now.
+        # 'Order' is the ForeignKey to the Order model.
+        fields = ['id', 'Order', 'Part', 'Part_id', 'Quantity', 'PriceAtOrder']
+
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)

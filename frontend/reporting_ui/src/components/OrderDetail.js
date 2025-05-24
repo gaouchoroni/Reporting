@@ -10,7 +10,7 @@ const OrderDetail = () => {
     const [shipment, setShipment] = useState(null); // State for associated shipment
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [partsDetails, setPartsDetails] = useState({});
+    // const [partsDetails, setPartsDetails] = useState({}); // Removed, PartName is now nested
     const [showShipmentForm, setShowShipmentForm] = useState(false);
 
     const fetchData = useCallback(async () => {
@@ -20,14 +20,8 @@ const OrderDetail = () => {
             const orderData = await api.getOrder(orderId);
             setOrder(orderData);
 
-            // Fetch part details
-            const partIds = orderData.items.map(item => item.Part).filter(id => id);
-            if (partIds.length > 0) {
-                const fetchedParts = await Promise.all(
-                    partIds.map(id => api.getPart(id).catch(e => ({ id, PartName: 'Unknown Part' })))
-                );
-                setPartsDetails(fetchedParts.reduce((acc, part) => ({ ...acc, [part.id]: part.PartName }), {}));
-            }
+            // Part details (PartName) are now expected to be nested within orderData.items directly.
+            // No separate fetching of part details is needed.
 
             // Fetch all shipments and find the one for this order
             // In a real app with many shipments, you'd ideally have an API endpoint
@@ -96,7 +90,7 @@ const OrderDetail = () => {
                     <tbody>
                         {order.items.map(item => (
                             <tr key={item.id}>
-                                <td>{partsDetails[item.Part] || item.Part}</td>
+                                <td>{item.Part && item.Part.PartName ? item.Part.PartName : 'Unknown Part'}</td>
                                 <td>{item.Quantity}</td>
                                 <td>${parseFloat(item.PriceAtOrder).toFixed(2)}</td>
                             </tr>

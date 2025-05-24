@@ -228,3 +228,84 @@ form button[type="button"]:hover {
   align-items: center;
   gap: 5px; /* Spacing between label and input */
 }
+
+/* Authentication Styles */
+.App-header nav {
+  display: flex; /* Allow nav links and auth controls to be side-by-side */
+  justify-content: space-between; /* Push nav links to left, auth to right */
+  align-items: center;
+}
+
+.auth-controls {
+  /* Styles for the div containing login/logout button */
+}
+
+.auth-controls .login-link {
+  color: #61dafb;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 8px 15px;
+  border: 1px solid #61dafb;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.auth-controls .login-link:hover {
+  background-color: #61dafb;
+  color: #282c34;
+}
+
+.auth-controls .logout-button {
+  background-color: #f44336; /* Red color for logout */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.auth-controls .logout-button:hover {
+  background-color: #d32f2f;
+}
+
+/* LoginPage.js already has inline styles for its container and form elements.
+   If more global styling for login pages is needed, it can be added here.
+   For instance, ensuring it's centered on the page if not already. */
+.login-page-container { 
+  /* Example: ensure it's centered if not using inline styles for this */
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px); /* Adjust based on header/footer height */
+}
+
+/* Form Validation Error Styling */
+.form-error {
+  color: #dc3545; /* Bootstrap's danger color */
+  font-size: 0.875em;
+  margin-top: 4px;
+}
+
+/* Button danger/loading states */
+.button-danger {
+  background-color: #dc3545;
+}
+.button-danger:hover {
+  background-color: #c82333;
+}
+
+.button-danger-loading {
+  background-color: #c82333; /* Darker red for loading */
+  cursor: not-allowed;
+}
+
+/* General form actions alignment */
+.form-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}

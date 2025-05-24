@@ -8,8 +8,8 @@ const OrderList = () => {
     const [error, setError] = useState(null);
     const [filters, setFilters] = useState({
         Status: '',
-        OrderDate__gte: '', // Greater than or equal to (for date from)
-        OrderDate__lte: '', // Less than or equal to (for date to)
+        OrderDate_after: '', // Changed from OrderDate__gte
+        OrderDate_before: '', // Changed from OrderDate__lte
     });
 
     const fetchOrders = useCallback(async () => {
@@ -80,12 +80,12 @@ const OrderList = () => {
                         </select>
                     </div>
                     <div>
-                        <label htmlFor="OrderDate__gte" style={{ marginRight: '5px' }}>From Date:</label>
-                        <input type="date" name="OrderDate__gte" id="OrderDate__gte" value={filters.OrderDate__gte} onChange={handleFilterChange} />
+                        <label htmlFor="OrderDate_after" style={{ marginRight: '5px' }}>From Date:</label>
+                        <input type="date" name="OrderDate_after" id="OrderDate_after" value={filters.OrderDate_after} onChange={handleFilterChange} />
                     </div>
                     <div>
-                        <label htmlFor="OrderDate__lte" style={{ marginRight: '5px' }}>To Date:</label>
-                        <input type="date" name="OrderDate__lte" id="OrderDate__lte" value={filters.OrderDate__lte} onChange={handleFilterChange} />
+                        <label htmlFor="OrderDate_before" style={{ marginRight: '5px' }}>To Date:</label>
+                        <input type="date" name="OrderDate_before" id="OrderDate_before" value={filters.OrderDate_before} onChange={handleFilterChange} />
                     </div>
                     <button onClick={handleApplyFilters}>Apply Filters</button>
                 </div>
